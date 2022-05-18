@@ -1046,7 +1046,18 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 			nombresColumnas.add("estado");
 			nombresColumnas.add("idRole");
 
-			dtmTabla = new DefaultTableModel();
+			dtmTabla = new DefaultTableModel(datosTabla, nombresColumnas){
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public boolean isCellEditable(int row, int column) {
+				// hago que todas las celdas de la tabla NO sean editables
+				return false;
+				}
+			};
 			dtmTabla.setColumnIdentifiers(nombresColumnas);
 			while (rs.next()) {
 				Vector<String> fila = new Vector<String>();
@@ -1079,18 +1090,7 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 			table.setRowHeight(20);
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			table.getSelectionModel().addListSelectionListener(this);
-			dtmTabla = new DefaultTableModel(datosTabla, nombresColumnas){
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 1L;
-
-				@Override
-				public boolean isCellEditable(int row, int column) {
-				// hago que todas las celdas de la tabla NO sean editables
-				return false;
-				}
-			};
+			
 			// ordenación
 			table.setAutoCreateRowSorter(true);
 			TableRowSorter<TableModel> metodoOrdenacion = new TableRowSorter<TableModel>(dtmTabla);

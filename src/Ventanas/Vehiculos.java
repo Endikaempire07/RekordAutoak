@@ -866,7 +866,18 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 			nombresColumnas.add("Tipo Combustible");
 			nombresColumnas.add("Fecha de Fabrica");
 
-			dtmTabla = new DefaultTableModel();
+			dtmTabla = new DefaultTableModel(datosTabla, nombresColumnas){
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public boolean isCellEditable(int row, int column) {
+				// hago que todas las celdas de la tabla NO sean editables
+				return false;
+				}
+			};
 			dtmTabla.setColumnIdentifiers(nombresColumnas);
 
 			while (rs.next()) {
@@ -892,18 +903,7 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 			table.setRowHeight(20);
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			table.getSelectionModel().addListSelectionListener(this);
-			dtmTabla = new DefaultTableModel(datosTabla, nombresColumnas){
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 1L;
-
-				@Override
-				public boolean isCellEditable(int row, int column) {
-				// hago que todas las celdas de la tabla NO sean editables
-				return false;
-				}
-			};
+			
 			// ordenación
 			table.setAutoCreateRowSorter(true);
 			TableRowSorter<TableModel> metodoOrdenacion = new TableRowSorter<TableModel>(dtmTabla);

@@ -21,6 +21,10 @@ import javax.swing.table.TableRowSorter;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +73,8 @@ public class Factura extends JFrame implements ActionListener{
 	              lblFecha;
 	protected JTable tablarep;
 	private JButton btnimprimir;
+	private String ida;
+	private String fecha;
 	/**
 	 * Abrir la ventana
 	 * @param args Generado autom\u00e1ticamente
@@ -661,6 +667,43 @@ public class Factura extends JFrame implements ActionListener{
 		 
 		 
 	}
+	
+	public void pagada() {
+		
+		
+		
+
+			try {
+				// CONECTO LA BASE DE DATOS
+				Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/rekordautoak", "root", "");
+				// creo una sentencia que pueda ir por delante y por detras
+				Statement st = conexion.createStatement();
+				
+				
+				ida =lblNumeroFactura.getText();
+
+				String consulta = "UPDATE factura SET pagada ='pagada' WHERE IdFactura ='"+ida+"';";
+
+				st.executeUpdate(consulta);
+
+				// cierro el Statement
+				st.close();
+				// cierro la conexion
+				conexion.close();
+
+				
+
+			} catch (SQLException e) {
+				// si se produce una excepción SQL
+				@SuppressWarnings("unused")
+				int errorcode = e.getErrorCode();
+
+				JOptionPane.showMessageDialog(this, (String) "Error SQL Numero " + e.getErrorCode() + ":" + e.getMessage(),
+						"ERROR", JOptionPane.ERROR_MESSAGE, null);
+			}
+
+		
+	}
 /**
  * accion del boton
  */
@@ -670,19 +713,24 @@ public class Factura extends JFrame implements ActionListener{
 		Object botonPulsado = e.getSource();
 		
 		if(botonPulsado == btnimprimir) {
-			String id;
-			String fecha;
-			fecha =lblFecha.getText();
+			
 
-			id =lblNumeroFactura.getText();
+			ida =lblNumeroFactura.getText();
 			btnimprimir.setVisible(false);
 			java.awt.Image image = Imprimirpdf.getImageFromPanel(panelPrincipal);
-			String filename = "C:\\Rekordautoak\\Facturas\\"+ id +"-"+ fecha +"-factura.pdf";
+			String filename = "C:\\Rekordautoak\\Facturas\\id_"+ida+"_factura.pdf";
 			Imprimirpdf.printToPDF(image,filename);
-			JOptionPane.showMessageDialog(this, (String) "factura generada con exito", "Error campos",
+			JOptionPane.showMessageDialog(this, (String) "factura generada con exito", "Guardado en carpeta facturas",
 					JOptionPane.INFORMATION_MESSAGE, null);
 			btnimprimir.setVisible(true);
-			LogsOrdendetrabajo.imprimirfactura(id);
+			LogsOrdendetrabajo.imprimirfactura(ida);
+			
+			pagada();
+			
+			this.dispose();
+
+
+			
 		}
 		
 		

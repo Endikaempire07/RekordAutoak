@@ -955,7 +955,18 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 			nombresColumnas.add("descuento");
 			nombresColumnas.add("fecha");
 		
-			dtmTabla = new DefaultTableModel();
+			dtmTabla = new DefaultTableModel(datosTabla, nombresColumnas){
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public boolean isCellEditable(int row, int column) {
+				// hago que todas las celdas de la tabla NO sean editables
+				return false;
+				}
+			};
 			dtmTabla.setColumnIdentifiers(nombresColumnas);
 
 			while (rs.next()) {
@@ -980,18 +991,7 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 			table.setRowHeight(20);
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			table.getSelectionModel().addListSelectionListener(this);
-			dtmTabla = new DefaultTableModel(datosTabla, nombresColumnas){
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 1L;
-
-				@Override
-				public boolean isCellEditable(int row, int column) {
-				// hago que todas las celdas de la tabla NO sean editables
-				return false;
-				}
-			};
+		
 			// ordenación
 			table.setAutoCreateRowSorter(true);
 			TableRowSorter<TableModel> metodoOrdenacion = new TableRowSorter<TableModel>(dtmTabla);
@@ -1037,6 +1037,7 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 	public void tabladatos2() {
 
 		try {
+			
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost/rekordautoak", "root", "");
 			// creo una sentencia que pueda ir por delante y por detras
 			Statement st = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -1046,10 +1047,7 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 			ResultSetMetaData metadatos = rs.getMetaData();
 			int numeroColumnas = metadatos.getColumnCount();
 
-			Vector<String> columnas = new Vector<String>();
-			for (int i = 1; i <= numeroColumnas; i++) {
-				columnas.add(metadatos.getColumnLabel(i));
-			}
+		
 
 			// cabeceras de las columnas
 			Vector<String> nombresColumnas = new Vector<String>();
@@ -1061,7 +1059,9 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 			nombresColumnas.add("Cantidad");
 			//nombresColumnas.add("total");
 
-			dtmTable = new DefaultTableModel();
+
+			dtmTable = new DefaultTableModel( );
+
 			dtmTable.setColumnIdentifiers(nombresColumnas);
 
 			//double totalFactura = 0.0;
@@ -2340,7 +2340,8 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 					Factura vm = new Factura();
 					vm.setVisible(true);
 					fecahactual();
-					 
+				
+
 					vm.lblFecha.setText(Fecha);
 					vm.lblNumeroFactura.setText(Idfactura);
 					
@@ -2356,14 +2357,14 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 					vm.lblFechaITV.setText(FechaITV);
 					
 					vm.lblMecanico.setText(Empleado);
+					
 					vm.tablarep.setModel(dtmTable);
-					 
-					int cantidad; 
+										int cantidad; 
 					 double precio; 
 					 double totalfila = 0.0;
 					 double total = 0.0;
 					 
-					 if(vm.tablarep.getRowCount() >0) {
+					
 						 double[ ] totalesfilas = new double [vm.tablarep.getRowCount()];
 					 for (int i = 0; i < vm.tablarep.getRowCount(); i++) {
 						
@@ -2372,10 +2373,10 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 						
 						 
 						 totalfila = precio * cantidad;
-						 total= total+totalfila;		System.out.println(totalfila);
+						 total= total+totalfila;		
 						
 					 }
-				 }
+				 
 					 vm.lblTotalBase.setText(""+total);
 					 double iva = 1.21;
 					 double totaliva = total*iva;
