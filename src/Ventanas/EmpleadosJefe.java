@@ -47,10 +47,15 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.JPasswordField;
-
+/**
+* Ventana para visualiar la empleados jefe
+* @author Grupo 4 
+*/
 public class EmpleadosJefe extends Login implements Runnable, ActionListener, ListSelectionListener {
 
 	/**
+	 * 
+	 * asignar variables
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -225,7 +230,7 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 	/**
 	 * Create the frame.
 	 * 
-	 * @param login
+	 * @param EmpleadosJefe
 	 * @throws SQLException
 	 */
 	public EmpleadosJefe() {
@@ -1008,7 +1013,11 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 		run();
 
 	}
-
+	/**
+	 * 
+	 * conexion con la base de datos
+	 * 
+	 */
 	public void tabladatos() {
 
 		try {
@@ -1070,7 +1079,18 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 			table.setRowHeight(20);
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			table.getSelectionModel().addListSelectionListener(this);
+			dtmTabla = new DefaultTableModel(datosTabla, nombresColumnas){
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
 
+				@Override
+				public boolean isCellEditable(int row, int column) {
+				// hago que todas las celdas de la tabla NO sean editables
+				return false;
+				}
+			};
 			// ordenación
 			table.setAutoCreateRowSorter(true);
 			TableRowSorter<TableModel> metodoOrdenacion = new TableRowSorter<TableModel>(dtmTabla);
@@ -1107,7 +1127,10 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 		// para que ordene por la primera columna (dni en este caso) en Ascendente
 
 	}
-
+	/**
+	 * asignar los valores de la fecha
+	 * 
+	 */
 	public void fecahactual() {
 
 		Calendar calendario = Calendar.getInstance();
@@ -1133,7 +1156,10 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 		segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND)
 				: "0" + calendario.get(Calendar.SECOND);
 	}
-
+	/**
+	 * Tener la fecha dinamica
+	 * 
+	 */
 	public void run() {
 		Thread ct = Thread.currentThread();
 		while (ct == h1) {
@@ -1147,7 +1173,11 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 			}
 		}
 	}
-
+	/**
+	 * 
+	 * insertar EMPLEADO en la base de datos y en la tabla
+	 * 
+	 */
 	public void insertarEmpleado() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1185,6 +1215,10 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 			}
 		}
 	}
+	/** 
+	 * @param textField 
+	 * @return si el campo esta vacio mostrar error o si esta lleno
+	 */
 
 	private boolean verificarCampos(JTextField textField) {
 		if (textField.getText().isEmpty()) {
@@ -1195,15 +1229,11 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 		return true;
 	}
 
-	private boolean verificarCamposContra(JPasswordField passwordField) {
-		if (passwordField.getPassword().length == 0) {
-			JOptionPane.showMessageDialog(this, "El campo debe ser rellenado", "Error", JOptionPane.ERROR_MESSAGE);
-			passwordField.requestFocus();
-			return false;
-		}
-		return true;
-	}
-
+	/**
+	 * 
+	 * 
+	 * vaciar empleados de la base de datos y el programa
+	 */
 	private void vaciarEmpleado() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1232,7 +1262,12 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 		}
 
 	}
-
+	/**
+	 * 
+	 * eliminiar el empleado seleccionada de la base de datos y el programa 
+	 * 
+	 * 
+	 */
 	public void eliminarEmpleado() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1265,6 +1300,11 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 
 	}
 
+/** 
+ * @param textField 
+ * @return si el campo esta vacio mostrar error o si esta lleno
+ */
+
 	@SuppressWarnings("unused")
 	private boolean verificarCamposborrar(JTextField textField) {
 		if (textField.getText().isEmpty()) {
@@ -1274,7 +1314,11 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 		}
 		return true;
 	}
-
+	/**
+	 * 
+	 * Modificar el empleado seleccionada en la tabla y modificar datos
+	 * 
+	 */
 	public void modificarEmpleado() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1368,8 +1412,10 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 		}
 
 	}
-
-	@SuppressWarnings("deprecation")
+	/**
+	 * accion de botones
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object boton = e.getSource();
@@ -1486,6 +1532,7 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
+				vm.lblImagen.setIcon(new ImageIcon(ayudaE.class.getResource("/resources/empleados_bueno.png")));
 
 				this.dispose();
 			}
@@ -1604,6 +1651,7 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
+				vm.lblImagen.setIcon(new ImageIcon(ayudaE.class.getResource("/resources/empleados_bueno.png")));
 
 				this.dispose();
 			}
@@ -1708,6 +1756,7 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
+				vm.lblImagen.setIcon(new ImageIcon(ayudaE.class.getResource("/resources/empleados_bueno.png")));
 
 				this.dispose();
 			}
@@ -1828,6 +1877,7 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
+				vm.lblImagen.setIcon(new ImageIcon(ayudaE.class.getResource("/resources/empleados_bueno.png")));
 
 				this.dispose();
 			}
@@ -2501,6 +2551,11 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 			}
 		}
 	}
+	/**
+	 * 
+	 * Seleccion de la tabla
+	 * 
+	 */
 
 	@Override
 	public void valueChanged(ListSelectionEvent lse) {

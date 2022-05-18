@@ -51,12 +51,15 @@ import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
+/**
+* Ventana para visualiar lA VENTANA Pieza
+* @author Grupo 4 
+*/
 
 public class Pieza extends Login implements Runnable, ActionListener, ListSelectionListener {
 
 	/**
-	 * 
+	 * asignar vaiables
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel Panel1;
@@ -202,7 +205,7 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 	/**
 	 * Create the frame.
 	 * 
-	 * @param login
+	 * @param pieza
 	 * @throws SQLException
 	 */
 	public Pieza() {
@@ -839,7 +842,11 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 		btnSumnistro.addActionListener(this);
 	
 	}
-
+	/**
+	 * 
+	 * conexion con la base de datos de pieza
+	 * 
+	 */
 	public void tabladatos() {
 
 		try {
@@ -892,7 +899,18 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 			table.setRowHeight(20);
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			table.getSelectionModel().addListSelectionListener(this);
+			dtmTabla = new DefaultTableModel(datosTabla, nombresColumnas){
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
 
+				@Override
+				public boolean isCellEditable(int row, int column) {
+				// hago que todas las celdas de la tabla NO sean editables
+				return false;
+				}
+			};
 			// ordenación
 			table.setAutoCreateRowSorter(true);
 			TableRowSorter<TableModel> metodoOrdenacion = new TableRowSorter<TableModel>(dtmTabla);
@@ -928,7 +946,10 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 		// para que ordene por la primera columna (dni en este caso) en Ascendente
 
 	}
-
+	/**
+	 * asignar los valores de la fecha
+	 * 
+	 */
 	public void fecahactual() {
 
 		Calendar calendario = Calendar.getInstance();
@@ -954,7 +975,10 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 		segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND)
 				: "0" + calendario.get(Calendar.SECOND);
 	}
-
+	/**
+	 * Tener la fecha dinamica
+	 * 
+	 */
 	public void run() {
 		Thread ct = Thread.currentThread();
 		while (ct == h1) {
@@ -968,7 +992,11 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 			}
 		}
 	}
-
+	/**
+	 * 
+	 * insertar pieza en la base de datos y en la tabla
+	 * 
+	 */
 	public void insertarPieza() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1004,7 +1032,10 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 			}
 		}
 	}
-
+	/** 
+	 * @param textField 
+	 * @return si el campo esta vacio mostrar error o si esta lleno
+	 */
 	private boolean verificarCampos(JTextField textField) {
 		if (textField.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(this, "El campo debe ser rellenado", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1013,7 +1044,11 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 		}
 		return true;
 	}
-
+	/**
+	 * 
+	 * 
+	 * vaciar pieza de la base de datos y el programa
+	 */
 	private void vaciarCliente() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1042,6 +1077,14 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 		}
 
 	}
+
+	/**
+	 * 
+	 * eliminiar el cliente seleccionada de la base de datos y el programa 
+	 * 
+	 * 
+	 */
+
 
 	public void eliminarCliente() {
 		try {
@@ -1074,7 +1117,10 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 		}
 
 	}
-
+	/** 
+	 * @param textField 
+	 * @return si el campo esta vacio mostrar error o si esta lleno
+	 */
 	@SuppressWarnings("unused")
 	private boolean verificarCamposborrar(JTextField textField) {
 		if (textField.getText().isEmpty()) {
@@ -1084,7 +1130,11 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 		}
 		return true;
 	}
-
+	/**
+	 * 
+	 * Modificar el pieza seleccionada en la tabla y modificar datos
+	 * 
+	 */
 	public void modificarPieza() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1141,7 +1191,10 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 		}
 
 	}
-
+	/**
+	 * accion de botones
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object boton = e.getSource();
@@ -1252,16 +1305,16 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 
-				ayudaC vm = new ayudaC();
+				ayudaP vm = new ayudaP();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
+				vm.lblImagen.setIcon(new ImageIcon(ayudaP.class.getResource("/resources/pieza_bueno.png")));
 
 				this.dispose();
 
-				vm.lblImagen.setIcon(new ImageIcon(ayudaC.class.getResource("/resources/ayudaC.png")));
 
 			} else if (boton == btnSumnistro) {
 				nombre = lblnombre.getText();
@@ -1387,15 +1440,16 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 
-				ayudaC vm = new ayudaC();
+				ayudaP vm = new ayudaP();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				vm.lblImagen.setIcon(new ImageIcon(ayudaC.class.getResource("/resources/ayudaC.png")));
+				vm.lblImagen.setIcon(new ImageIcon(ayudaP.class.getResource("/resources/pieza_bueno.png")));
 
 				this.dispose();
+
 
 			} else if (boton == btnSumnistro) {
 				nombre = lblnombre.getText();
@@ -1506,17 +1560,18 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 
-				ayudaC vm = new ayudaC();
+				ayudaP vm = new ayudaP();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				vm.lblImagen.setIcon(new ImageIcon(ayudaC.class.getResource("/resources/ayudaC.png")));
+				vm.lblImagen.setIcon(new ImageIcon(ayudaP.class.getResource("/resources/pieza_bueno.png")));
 
 				this.dispose();
 
-			} else if (boton == btnSumnistro) {
+
+			}else if (boton == btnSumnistro) {
 				nombre = lblnombre.getText();
 				apellido = lblapellidos.getText();
 				roles = lblroles.getText();
@@ -1643,15 +1698,16 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 
-				ayudaO vm = new ayudaO();
+				ayudaP vm = new ayudaP();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				vm.lblImagen.setIcon(new ImageIcon(ayudaC.class.getResource("/resources/ayudaC.png")));
+				vm.lblImagen.setIcon(new ImageIcon(ayudaP.class.getResource("/resources/pieza_bueno.png")));
 
 				this.dispose();
+
 
 			} else if (boton == btnSumnistro) {
 				nombre = lblnombre.getText();
@@ -1992,7 +2048,11 @@ txtMarca.requestFocus();
 			}
 		} 
 	}
-
+	/**
+	 * 
+	 * Seleccion de la tabla
+	 * 
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent lse) {
 

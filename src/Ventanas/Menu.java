@@ -20,10 +20,15 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-
+/**
+* Ventana para visualiar lA VENTANA Menu
+* @author Grupo 4 
+*/
 public class Menu extends Login implements Runnable, ActionListener {
 
 	/**
+	 * 
+	 * asignar variables
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -68,7 +73,7 @@ public class Menu extends Login implements Runnable, ActionListener {
 	
 	/**
 	 * Create the frame.
-	 * @param login 
+	 * @param Menu 
 	 */
 	public Menu() {
 		setForeground(Color.WHITE);
@@ -280,7 +285,10 @@ public class Menu extends Login implements Runnable, ActionListener {
 		btnVehiculos.addActionListener(this);
 
 	}
-
+	/**
+	 * asignar los valores de la fecha
+	 * 
+	 */
 	public void fecahactual() {
 
 		Calendar calendario = Calendar.getInstance();
@@ -306,7 +314,10 @@ public class Menu extends Login implements Runnable, ActionListener {
 		segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND)
 				: "0" + calendario.get(Calendar.SECOND);
 	}
-
+	/**
+	 * Tener la fecha dinamica
+	 * 
+	 */
 	public void run() {
 		Thread ct = Thread.currentThread();
 		while (ct == h1) {
@@ -320,7 +331,10 @@ public class Menu extends Login implements Runnable, ActionListener {
 			}
 		}
 	}
-	
+	/**
+	 * accion de botones
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object boton = e.getSource();

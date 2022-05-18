@@ -34,7 +34,7 @@ import javax.swing.JScrollPane;
 
 /**
 * Ventana para visualiar la factura
-* @author Grupo 2
+* @author Grupo 4 
 */
 public class Factura extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 596395190344805803L;
@@ -661,16 +661,23 @@ public class Factura extends JFrame implements ActionListener{
 		 
 		 
 	}
-
+/**
+ * accion del boton
+ */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Object botonPulsado = e.getSource();
 		
 		if(botonPulsado == btnimprimir) {
+			String id;
+			String fecha;
+			fecha =lblFecha.getText();
+
+			id =lblNumeroFactura.getText();
 			btnimprimir.setVisible(false);
 			java.awt.Image image = Imprimirpdf.getImageFromPanel(panelPrincipal);
-			String filename = "C:\\Rekordautoak\\Facturas\\"+id+"-factura.pdf";
+			String filename = "C:\\Rekordautoak\\Facturas\\"+ id +"-"+ fecha +"-factura.pdf";
 			Imprimirpdf.printToPDF(image,filename);
 			JOptionPane.showMessageDialog(this, (String) "factura generada con exito", "Error campos",
 					JOptionPane.INFORMATION_MESSAGE, null);

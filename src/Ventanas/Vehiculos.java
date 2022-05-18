@@ -48,10 +48,14 @@ import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
+/**
+* Ventana para visualiar lA VENTANA vehiculos
+* @author Grupo 4 
+*/
 public class Vehiculos extends Login implements Runnable, ActionListener, ListSelectionListener {
-
 	/**
+	 * 
+	 * asignar variables
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -188,7 +192,7 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 	/**
 	 * Create the frame.
 	 * 
-	 * @param login
+	 * @param Vehiculos
 	 * @throws SQLException
 	 */
 	public Vehiculos() {
@@ -829,7 +833,11 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 		btnVaciar.addActionListener(this);
 
 	}
-
+	/**
+	 * 
+	 * conexion con la base de datos
+	 * 
+	 */
 	public void tabladatos() {
 
 		try {
@@ -884,7 +892,18 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 			table.setRowHeight(20);
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			table.getSelectionModel().addListSelectionListener(this);
+			dtmTabla = new DefaultTableModel(datosTabla, nombresColumnas){
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
 
+				@Override
+				public boolean isCellEditable(int row, int column) {
+				// hago que todas las celdas de la tabla NO sean editables
+				return false;
+				}
+			};
 			// ordenación
 			table.setAutoCreateRowSorter(true);
 			TableRowSorter<TableModel> metodoOrdenacion = new TableRowSorter<TableModel>(dtmTabla);
@@ -920,7 +939,11 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 		// para que ordene por la primera columna (dni en este caso) en Ascendente
 
 	}
-
+	/**
+	 * 
+	 * conexion con la base de datos con clientes
+	 * 
+	 */
 	public void tabladatosCliente() {
 
 		try {
@@ -950,6 +973,10 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 		// para que ordene por la primera columna (dni en este caso) en Ascendente
 
 	}
+	/**
+	 * asignar los valores de la fecha
+	 * 
+	 */
 
 	public void fecahactual() {
 
@@ -976,7 +1003,10 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 		segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND)
 				: "0" + calendario.get(Calendar.SECOND);
 	}
-
+	/**
+	 * Tener la fecha dinamica
+	 * 
+	 */
 	public void run() {
 		Thread ct = Thread.currentThread();
 		while (ct == h1) {
@@ -990,7 +1020,11 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 			}
 		}
 	}
-
+	/**
+	 * 
+	 * insertar vehiculo en la base de datos y en la tabla
+	 * 
+	 */
 	public void insertarVehiculo() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1027,7 +1061,10 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 			}
 		}
 	}
-
+	/** 
+	 * @param textField 
+	 * @return si el campo esta vacio mostrar error o si esta lleno
+	 */
 	private boolean verificarCampos(JTextField textField) {
 		if (textField.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(this, "El campo debe ser rellenado", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1036,7 +1073,11 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 		}
 		return true;
 	}
-
+	/**
+	 * 
+	 * 
+	 * vaciar vehiculo de la base de datos y el programa
+	 */
 	private void vaciarVehiculo() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1065,7 +1106,12 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 		}
 
 	}
-
+	/**
+	 * 
+	 * eliminiar el vehiulo seleccionada de la base de datos y el programa 
+	 * 
+	 * 
+	 */
 	public void eliminarVehiculo() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1097,7 +1143,10 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 		}
 
 	}
-
+	/** 
+	 * @param textField 
+	 * @return si el campo esta vacio mostrar error o si esta lleno
+	 */
 	@SuppressWarnings("unused")
 	private boolean verificarCamposborrar(JTextField textField) {
 		if (textField.getText().isEmpty()) {
@@ -1107,7 +1156,11 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 		}
 		return true;
 	}
-
+	/**
+	 * 
+	 * Modificar el empleado seleccionada en la tabla y modificar datos
+	 * 
+	 */
 	public void modificarVehiculo() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1165,7 +1218,10 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 		}
 
 	}
-
+	/**
+	 * accion de botones
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object boton = e.getSource();
@@ -1282,10 +1338,10 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
+				vm.lblImagen.setIcon(new ImageIcon(ayudaV.class.getResource("/resources/vehiculos_bueno.png")));
 
 				this.dispose();
 
-				vm.lblImagen.setIcon(new ImageIcon(ayudaV.class.getResource("/resources/ayudaC.png")));
 
 			}
 
@@ -1400,12 +1456,12 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				vm.lblImagen.setIcon(new ImageIcon(ayudaV.class.getResource("/resources/ayudaC.png")));
+				vm.lblImagen.setIcon(new ImageIcon(ayudaV.class.getResource("/resources/vehiculos_bueno.png")));
 
 				this.dispose();
 
-			}
 
+			}
 		} else if (numeroroles >= 50000 && numeroroles <= 69999) {
 
 			if (boton == btnCerrarSesion) {
@@ -1503,9 +1559,10 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				vm.lblImagen.setIcon(new ImageIcon(ayudaV.class.getResource("/resources/ayudaC.png")));
+				vm.lblImagen.setIcon(new ImageIcon(ayudaV.class.getResource("/resources/vehiculos_bueno.png")));
 
 				this.dispose();
+
 
 			}
 		} else if (numeroroles == 90000) {
@@ -1625,10 +1682,12 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				vm.lblImagen.setIcon(new ImageIcon(ayudaV.class.getResource("/resources/ayudaC.png")));
+				vm.lblImagen.setIcon(new ImageIcon(ayudaV.class.getResource("/resources/vehiculos_bueno.png")));
 
 				this.dispose();
 
+
+			
 			}
 		}
 
@@ -1884,7 +1943,11 @@ public class Vehiculos extends Login implements Runnable, ActionListener, ListSe
 			}
 		}
 	}
-
+	/**
+	 * 
+	 * Seleccion de la tabla
+	 * 
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent lse) {
 

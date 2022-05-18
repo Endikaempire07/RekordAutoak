@@ -49,11 +49,14 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.SwingConstants;
-
-public class ayudaV extends Login implements Runnable, ActionListener, ListSelectionListener {
+/**
+* Ventana para visualiar la ayuda
+* @author Grupo 4 
+*/
+public class ayudaV extends Login implements Runnable, ActionListener {
 
 	/**
-	 * 
+	 * Asignar Variables
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel Panel1;
@@ -88,7 +91,7 @@ public class ayudaV extends Login implements Runnable, ActionListener, ListSelec
 	/**
 	 * Create the frame.
 	 * 
-	 * @param login
+	 * @param ayudaV
 	 * @throws SQLException
 	 */
 	public ayudaV() {
@@ -269,7 +272,10 @@ public class ayudaV extends Login implements Runnable, ActionListener, ListSelec
 	
 
 	}
-
+	/**
+	 * asignar los valores de la fecha
+	 * 
+	 */
 	public void fecahactual() {
 
 		Calendar calendario = Calendar.getInstance();
@@ -295,7 +301,10 @@ public class ayudaV extends Login implements Runnable, ActionListener, ListSelec
 		segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND)
 				: "0" + calendario.get(Calendar.SECOND);
 	}
-
+	/**
+	 * Tener la fecha dinamica
+	 * 
+	 */
 	public void run() {
 		Thread ct = Thread.currentThread();
 		while (ct == h1) {
@@ -310,7 +319,10 @@ public class ayudaV extends Login implements Runnable, ActionListener, ListSelec
 		}
 	}
 
-
+	/** 
+	 * @param textField 
+	 * @return si el campo esta vacio mostrar error o si esta lleno
+	 */
 
 	private boolean verificarCampos(JTextField textField) {
 		if (textField.getText().isEmpty()) {
@@ -320,7 +332,10 @@ public class ayudaV extends Login implements Runnable, ActionListener, ListSelec
 		}
 		return true;
 	}
-
+	/** 
+	 * @param textField 
+	 * @return si el campo esta vacio mostrar error o si esta lleno
+	 */
 	@SuppressWarnings("unused")
 	private boolean verificarCamposborrar(JTextField textField) {
 		if (textField.getText().isEmpty()) {
@@ -332,7 +347,10 @@ public class ayudaV extends Login implements Runnable, ActionListener, ListSelec
 	}
 
 
-
+	/**
+	 * accion de botones
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object boton = e.getSource();
@@ -797,9 +815,4 @@ public class ayudaV extends Login implements Runnable, ActionListener, ListSelec
 		}
 	}
 
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 }	

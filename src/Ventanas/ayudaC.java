@@ -1,59 +1,36 @@
 package Ventanas;
 
 import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
-
 import java.awt.GridBagLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JOptionPane;
-
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.Vector;
 import java.awt.Font;
-
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.border.TitledBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.SwingConstants;
-
-public class ayudaC extends Login implements Runnable, ActionListener, ListSelectionListener {
+/**
+* Ventana para visualiar la ayuda
+* @author Grupo 4 
+*/
+public class ayudaC extends Login implements Runnable, ActionListener {
 
 	/**
-	 * 
+	 * ASIGANAR VARIABLES
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel Panel1;
@@ -88,7 +65,7 @@ public class ayudaC extends Login implements Runnable, ActionListener, ListSelec
 	/**
 	 * Create the frame.
 	 * 
-	 * @param login
+	 * @param ayudaC
 	 * @throws SQLException
 	 */
 	public ayudaC() {
@@ -269,7 +246,9 @@ public class ayudaC extends Login implements Runnable, ActionListener, ListSelec
 	
 
 	}
-
+/**
+ * @param FECHA
+ */
 	public void fecahactual() {
 
 		Calendar calendario = Calendar.getInstance();
@@ -295,7 +274,10 @@ public class ayudaC extends Login implements Runnable, ActionListener, ListSelec
 		segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND)
 				: "0" + calendario.get(Calendar.SECOND);
 	}
-
+/**
+ * para que la hora sea dinamica
+ * 
+ */
 	public void run() {
 		Thread ct = Thread.currentThread();
 		while (ct == h1) {
@@ -310,8 +292,11 @@ public class ayudaC extends Login implements Runnable, ActionListener, ListSelec
 		}
 	}
 
-
-
+/**
+ * 
+ * @param textField 
+ * @return si el campo esta vacio mostrar error o si esta lleno
+ */
 	private boolean verificarCampos(JTextField textField) {
 		if (textField.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(this, "El campo debe ser rellenado", "Error", JOptionPane.ERROR_MESSAGE);
@@ -320,7 +305,11 @@ public class ayudaC extends Login implements Runnable, ActionListener, ListSelec
 		}
 		return true;
 	}
-
+	/**
+	 * 
+	 * @param textField 
+	 * @return si el campo esta vacio mostrar error o si esta lleno
+	 */
 	@SuppressWarnings("unused")
 	private boolean verificarCamposborrar(JTextField textField) {
 		if (textField.getText().isEmpty()) {
@@ -332,7 +321,11 @@ public class ayudaC extends Login implements Runnable, ActionListener, ListSelec
 	}
 
 
-
+	/**
+	 * 
+	 * @param asignacion de botones y sus agciones
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object boton = e.getSource();
@@ -785,11 +778,5 @@ public class ayudaC extends Login implements Runnable, ActionListener, ListSelec
 			   
 			}
 		}
-	}
-
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }	

@@ -9,9 +9,18 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfWriter;
 
-
+/**
+ * 
+ * @author evill
+ *
+ */
 
 public class Imprimirpdf {
+/**
+ * 	
+ * @param awtImage
+ * @param fileName - decimos donde va a guardar la factura
+ */
 	public static void printToPDF(java.awt.Image awtImage, String fileName)
 	{
 		try
@@ -36,7 +45,11 @@ public class Imprimirpdf {
 		}
 
 	}
-	
+	/**
+	 * 
+	 * @param component
+	 * @return la factura del cliente
+	 */
 	public static java.awt.Image getImageFromPanel(Component component)
 	{
         BufferedImage image = new BufferedImage(component.getWidth(),

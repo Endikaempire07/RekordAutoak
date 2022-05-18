@@ -54,10 +54,15 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.GridLayout;
 import java.awt.Dimension;
 import java.awt.Component;
-
+/**
+* Ventana para visualiar lA VENTANA Ordenes
+* @author Grupo 4 
+*/
 public class Ordenes extends Login implements Runnable, ActionListener, ListSelectionListener {
 
 	/**
+	 * 
+	 * asignar variables
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -214,7 +219,7 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 	/**
 	 * Create the frame.
 	 * 
-	 * @param login
+	 * @param Ordenes
 	 * @throws SQLException
 	 */
 	public Ordenes() {
@@ -918,7 +923,11 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 		
 
 	}
-
+	/**
+	 * 
+	 * conexion con la base de datos
+	 * 
+	 */
 	public void tabladatos() {
 
 		try {
@@ -976,7 +985,18 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 			table.setRowHeight(20);
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			table.getSelectionModel().addListSelectionListener(this);
+			dtmTabla = new DefaultTableModel(datosTabla, nombresColumnas){
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
 
+				@Override
+				public boolean isCellEditable(int row, int column) {
+				// hago que todas las celdas de la tabla NO sean editables
+				return false;
+				}
+			};
 			// ordenación
 			table.setAutoCreateRowSorter(true);
 			TableRowSorter<TableModel> metodoOrdenacion = new TableRowSorter<TableModel>(dtmTabla);
@@ -1012,7 +1032,11 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 		// para que ordene por la primera columna (dni en este caso) en Ascendente
 
 	}
-
+	/**
+	 * 
+	 * conexion con la base de datos con los empleados
+	 * 
+	 */ 
 	public void tabladatosEmple() {
 
 		try {
@@ -1042,7 +1066,11 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 		// para que ordene por la primera columna (dni en este caso) en Ascendente
 
 	}
-
+	/**
+	 * 
+	 * conexion con la base de datos con vehiculos
+	 * 
+	 */
 	public void tabladatosVehiculo() {
 
 		try {
@@ -1074,7 +1102,11 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 		// para que ordene por la primera columna (dni en este caso) en Ascendente
 
 	}
-
+	/**
+	 * 
+	 * conexion con la base de datos con ordenes
+	 * 
+	 */
 	public void tabladatosEstado() {
 
 		try {
@@ -1106,7 +1138,10 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 		// para que ordene por la primera columna (dni en este caso) en Ascendente
 
 	}
-
+	/**
+	 * asignar los valores de la fecha
+	 * 
+	 */
 	public void fecahactual() {
 
 		Calendar calendario = Calendar.getInstance();
@@ -1132,7 +1167,10 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 		segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND)
 				: "0" + calendario.get(Calendar.SECOND);
 	}
-
+	/**
+	 * Tener la fecha dinamica
+	 * 
+	 */
 	public void run() {
 		Thread ct = Thread.currentThread();
 		while (ct == h1) {
@@ -1146,7 +1184,11 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 			}
 		}
 	}
-
+	/**
+	 * 
+	 * insertar ordenes en la base de datos y en la tabla
+	 * 
+	 */
 	public void insertarOrdenes() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1188,7 +1230,10 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 			}
 		}
 	}
-
+	/** 
+	 * @param textField 
+	 * @return si el campo esta vacio mostrar error o si esta lleno
+	 */
 	private boolean verificarCampos(JTextField textField) {
 		if (textField.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(this, "El campo debe ser rellenado", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1197,7 +1242,11 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 		}
 		return true;
 	}
-
+	/**
+	 * 
+	 * 
+	 * vaciar ordenes de la base de datos y el programa
+	 */
 	private void vaciarOrdenes() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1226,7 +1275,12 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 		}
 
 	}
-
+	/**
+	 * 
+	 * eliminiar el orden seleccionada de la base de datos y el programa 
+	 * 
+	 * 
+	 */
 	public void eliminarOrdenes() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1258,7 +1312,10 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 		}
 
 	}
-
+	/** 
+	 * @param textField 
+	 * @return si el campo esta vacio mostrar error o si esta lleno
+	 */
 	@SuppressWarnings("unused")
 	private boolean verificarCamposborrar(JTextField textField) {
 		if (textField.getText().isEmpty()) {
@@ -1268,7 +1325,11 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 		}
 		return true;
 	}
-
+	/**
+	 * 
+	 * Modificar el empleado seleccionada en la tabla y modificar datos
+	 * 
+	 */
 	public void modificarOrdenes() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1318,7 +1379,10 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 		}
 
 	}
-
+	/**
+	 * accion de botones
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object boton = e.getSource();
@@ -1429,7 +1493,7 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 
-				ayudaC vm = new ayudaC();
+				ayudaO vm = new ayudaO();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);
@@ -1438,7 +1502,7 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 
 				this.dispose();
 
-				vm.lblImagen.setIcon(new ImageIcon(ayudaC.class.getResource("/resources/ayudaC.png")));
+				vm.lblImagen.setIcon(new ImageIcon(ayudaO.class.getResource("/resources/ordenes_bueno.png")));
 
 			}else if (boton == btnPieza) {
 				nombre = lblnombre.getText();
@@ -1652,15 +1716,16 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 
-				ayudaC vm = new ayudaC();
+				ayudaO vm = new ayudaO();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				vm.lblImagen.setIcon(new ImageIcon(ayudaC.class.getResource("/resources/ayudaC.png")));
 
 				this.dispose();
+
+				vm.lblImagen.setIcon(new ImageIcon(ayudaO.class.getResource("/resources/ordenes_bueno.png")));
 
 			}else if (boton == btnPieza) {
 				nombre = lblnombre.getText();
@@ -1858,15 +1923,16 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 
-				ayudaC vm = new ayudaC();
+				ayudaO vm = new ayudaO();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				vm.lblImagen.setIcon(new ImageIcon(ayudaC.class.getResource("/resources/ayudaC.png")));
 
 				this.dispose();
+
+				vm.lblImagen.setIcon(new ImageIcon(ayudaO.class.getResource("/resources/ordenes_bueno.png")));
 
 			}else if (boton == btnPieza) {
 				nombre = lblnombre.getText();
@@ -2052,7 +2118,7 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 
 				this.dispose();
 
-			} else if (boton == ayuda) {
+			}else if (boton == ayuda) {
 				nombre = lblnombre.getText();
 				apellido = lblapellidos.getText();
 				roles = lblroles.getText();
@@ -2064,9 +2130,10 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				vm.lblImagen.setIcon(new ImageIcon(ayudaC.class.getResource("/resources/ayudaC.png")));
 
 				this.dispose();
+
+				vm.lblImagen.setIcon(new ImageIcon(ayudaO.class.getResource("/resources/ordenes_bueno.png")));
 
 			} else if (boton == btnPieza) {
 				nombre = lblnombre.getText();
@@ -2492,7 +2559,11 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 			}
 		}
 	}
-
+	/**
+	 * 
+	 * Seleccion de la tabla
+	 * 
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent lse) {
 

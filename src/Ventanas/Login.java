@@ -35,10 +35,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.SystemColor;
 import javax.swing.JComboBox;
-
+/**
+* Ventana para visualiar lA VENTANA login
+* @author Grupo 4 
+*/
 public class Login extends JFrame implements Runnable, ActionListener, Serializable{
 
 	/**
+	 * 
+	 * asignar variables
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -79,7 +84,11 @@ public class Login extends JFrame implements Runnable, ActionListener, Serializa
 	// Base de datos
 	private ResultSet rs;
 	private Connection conexion;
-	
+	/**
+	 * 
+	 * 
+	 * @param args inicia desde aqui siempre
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -94,7 +103,10 @@ public class Login extends JFrame implements Runnable, ActionListener, Serializa
 	}
 
 	/**
+	 * 
 	 * Create the frame.
+	 * @param Login	 
+	 * @throws SQLException
 	 */
 	public Login() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/resources/favicon.png")));
@@ -221,7 +233,10 @@ public class Login extends JFrame implements Runnable, ActionListener, Serializa
 		run();
 		conectarbasededatos();
 	}
-
+	/**
+	 * asignar los valores de la fecha
+	 * 
+	 */
 	public void fecahactual() {
 
 		Calendar calendario = Calendar.getInstance();
@@ -248,7 +263,10 @@ public class Login extends JFrame implements Runnable, ActionListener, Serializa
 				: "0" + calendario.get(Calendar.SECOND);
 
 	}
-
+	/**
+	 * Tener la fecha dinamica
+	 * 
+	 */
 	public void run() {
 		Thread ct = Thread.currentThread();
 		while (ct == h1) {
@@ -261,7 +279,11 @@ public class Login extends JFrame implements Runnable, ActionListener, Serializa
 			}
 		}
 	}
-
+	/**
+	 * 
+	 * conexion con la base de datos
+	 * 
+	 */
 	public void conectarbasededatos() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -291,6 +313,10 @@ public class Login extends JFrame implements Runnable, ActionListener, Serializa
 
 		}
 	}
+	/**
+	 * accion de botones
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object boton = e.getSource();
@@ -393,12 +419,20 @@ public class Login extends JFrame implements Runnable, ActionListener, Serializa
 		}
 	
 	}
-
+	/**
+	 * 
+	 * 
+	 * @param fg hacer que el campo de texto se seleccione
+	 */
 	public void focusGained(FocusEvent fg) {
 		JTextComponent txt = (JTextComponent) fg.getSource();
 		txt.select(0, txt.getText().length());
 	}
-
+	/**
+	 * 
+	 * 
+	 * @param f1 hacer que el campo de texto se seleccione
+	 */
 	public void focusLost(FocusEvent fl) {
 		JTextComponent txt = (JTextComponent) fl.getSource();
 		txt.select(0, 0);

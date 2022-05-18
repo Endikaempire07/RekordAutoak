@@ -55,10 +55,17 @@ import javax.swing.event.ListSelectionListener;
 
 import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
-
+/**
+* Ventana para visualiar la factura
+* @author Grupo 4 
+*/
 public class Facturas extends Login implements Runnable, ActionListener, ListSelectionListener {
 
-	
+	/**
+	 * 
+	 * asignar variables
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel Panel1;
 	private JPanel panelcentral;
@@ -917,7 +924,11 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 
 
 	}
-
+	/**
+	 * 
+	 * conexion con la base de datos
+	 * 
+	 */
 	public void tabladatos() {
 
 		try {
@@ -969,7 +980,18 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 			table.setRowHeight(20);
 			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			table.getSelectionModel().addListSelectionListener(this);
+			dtmTabla = new DefaultTableModel(datosTabla, nombresColumnas){
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
 
+				@Override
+				public boolean isCellEditable(int row, int column) {
+				// hago que todas las celdas de la tabla NO sean editables
+				return false;
+				}
+			};
 			// ordenación
 			table.setAutoCreateRowSorter(true);
 			TableRowSorter<TableModel> metodoOrdenacion = new TableRowSorter<TableModel>(dtmTabla);
@@ -1005,6 +1027,13 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 		// para que ordene por la primera columna (dni en este caso) en Ascendente
 
 	}
+	
+	/**
+	 * 
+	 * conexion con la base de datos de factura final
+	 * 
+	 */
+	
 	public void tabladatos2() {
 
 		try {
@@ -1134,6 +1163,13 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 		// para que ordene por la primera columna (dni en este caso) en Ascendente
 
 	}
+	
+	/**
+	 * 
+	 * conecxion con la base de datos para ordenar y filtrar por si esta pagada o no
+	 * 
+	 * 
+	 */
 	public void tabladatospagada() {
 
 		try {
@@ -1197,7 +1233,12 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 		// para que ordene por la primera columna (dni en este caso) en Ascendente
 
 	}
-
+	/**
+	 * 
+	 * conecxion con la base de datos con ordenes de trabajo
+	 * 
+	 * 
+	 */
 	public void tabladatosOrden() {
 
 		try {
@@ -1227,6 +1268,12 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 		// para que ordene por la primera columna (dni en este caso) en Ascendente
 
 	}
+	/**
+	 * 
+	 * conecxion con la base de datos con vehiculo
+	 * 
+	 * 
+	 */
 	public void tabladatosVehiculo() {
 
 		try {
@@ -1253,11 +1300,14 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 					"ERROR", JOptionPane.ERROR_MESSAGE, null);
 
 		}
-		// creo el default model de la tabla
-
-		// para que ordene por la primera columna (dni en este caso) en Ascendente
-
+	
 	}	
+	/**
+	 * 
+	 * conecxion con la base de datos con ordenes de trabajo
+	 * 
+	 * 
+	 */	
 	public void tabladatosO() {
 
 		try {
@@ -1287,6 +1337,17 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 		// para que ordene por la primera columna (dni en este caso) en Ascendente
 
 	}	
+	/**
+	 * 
+	 * 	/
+	 * 
+	 * conecxion con la base de datos con los clientes
+	 * 
+	 * 
+	 *
+	 * 
+	 * 
+	 */
 	public void tabladatosCliente() {
 
 		try {
@@ -1324,7 +1385,10 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 		// para que ordene por la primera columna (dni en este caso) en Ascendente
 
 	}
-	
+	/**
+	 * asignar los valores de la fecha
+	 * 
+	 */
 	public void fecahactual() {
 
 		Calendar calendario = Calendar.getInstance();
@@ -1350,7 +1414,10 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 		segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND)
 				: "0" + calendario.get(Calendar.SECOND);
 	}
-
+	/**
+	 * Tener la fecha dinamica
+	 * 
+	 */
 	public void run() {
 		Thread ct = Thread.currentThread();
 		while (ct == h1) {
@@ -1365,7 +1432,11 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 			}
 		}
 	}
-
+/**
+ * 
+ * insertar factura en la base de datos y en la tabla
+ * 
+ */
 	public void insertarFactura() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1402,6 +1473,10 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 			}
 		}
 	}
+	/** 
+	 * @param textField 
+	 * @return si el campo esta vacio mostrar error o si esta lleno
+	 */
 
 	private boolean verificarCampos(JTextField textField) {
 		if (textField.getText().isEmpty()) {
@@ -1411,7 +1486,11 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 		}
 		return true;
 	}
-
+	/**
+	 * 
+	 * 
+	 * vaciar facturas de la base de datos y el programa
+	 */
 	private void vaciarFacturas() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1440,7 +1519,12 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 		}
 
 	}
-
+/**
+ * 
+ * eliminiar la factura seleccionada de la base de datos y el programa 
+ * 
+ * 
+ */
 	public void eliminarFacturas() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1472,6 +1556,10 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 		}
 
 	}
+	/** 
+	 * @param textField 
+	 * @return si el campo esta vacio mostrar error o si esta lleno
+	 */
 
 	@SuppressWarnings("unused")
 	private boolean verificarCamposborrar(JTextField textField) {
@@ -1482,7 +1570,11 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 		}
 		return true;
 	}
-
+	/**
+	 * 
+	 * Modificar la factura seleccionada en la tabla y modificar datos
+	 * 
+	 */
 	public void modificarFacturas() {
 		try {
 			// CONECTO LA BASE DE DATOS
@@ -1531,7 +1623,10 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 		}
 
 	}
-
+	/**
+	 * accion de botones
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object boton = e.getSource();
@@ -1642,16 +1737,15 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 
-				ayudaC vm = new ayudaC();
+				ayudaF vm = new ayudaF();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
+				vm.lblImagen.setIcon(new ImageIcon(ayudaF.class.getResource("/resources/Factura_bueno.png")));
 
 				this.dispose();
-
-				vm.lblImagen.setIcon(new ImageIcon(ayudaC.class.getResource("/resources/ayudaC.png")));
 
 			}
 
@@ -1760,13 +1854,13 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 
-				ayudaC vm = new ayudaC();
+				ayudaF vm = new ayudaF();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				vm.lblImagen.setIcon(new ImageIcon(ayudaC.class.getResource("/resources/ayudaC.png")));
+				vm.lblImagen.setIcon(new ImageIcon(ayudaF.class.getResource("/resources/Factura_bueno.png")));
 
 				this.dispose();
 
@@ -1864,13 +1958,13 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 
-				ayudaC vm = new ayudaC();
+				ayudaF vm = new ayudaF();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				vm.lblImagen.setIcon(new ImageIcon(ayudaC.class.getResource("/resources/ayudaC.png")));
+				vm.lblImagen.setIcon(new ImageIcon(ayudaF.class.getResource("/resources/Factura_bueno.png")));
 
 				this.dispose();
 
@@ -1987,13 +2081,13 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 
-				ayudaO vm = new ayudaO();
+				ayudaF vm = new ayudaF();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				vm.lblImagen.setIcon(new ImageIcon(ayudaC.class.getResource("/resources/ayudaC.png")));
+				vm.lblImagen.setIcon(new ImageIcon(ayudaF.class.getResource("/resources/Factura_bueno.png")));
 
 				this.dispose();
 
@@ -2295,7 +2389,11 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 		}
 	}
 	
-
+/**
+ * 
+ * Seleccion de la tabla
+ * 
+ */
 	@Override
 	public void valueChanged(ListSelectionEvent lse) {
 

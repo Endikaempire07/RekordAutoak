@@ -10,9 +10,17 @@ import java.time.format.DateTimeFormatter;
 
 import Ventanas.Clientes;
 import Ventanas.Ordenes;
-
+/**
+*
+* @author Grupo 4 
+*/
 public class LogsOrdendetrabajo {
  // registrar nueva orden de trabajo
+	/**
+	 * 
+	 * 
+	 * @param nuevaorden
+	 */
 	public static void logCrearorden(Ordenes nuevaorden) {
 		File dir = new File("C:\\Rekordautoak\\Logs");
 		if (!dir.exists()) {
@@ -50,6 +58,11 @@ public class LogsOrdendetrabajo {
 	}
 	
 //registrar cambios en orden de tabajo
+	/**
+	 * 
+	 * 
+	 * @param nuevaorden
+	 */
 	public static void logmodorden(Ordenes nuevaorden) {
 		File dir = new File("C:\\Rekordautoak\\Logs");
 		if (!dir.exists()) {
@@ -87,6 +100,11 @@ public class LogsOrdendetrabajo {
 	}
 	
 //registrar fanializacion de orden
+	/**
+	 * 
+	 * 
+	 * @param nuevaorden
+	 */
 	public static void logfinorden(Ordenes nuevaorden) {
 		File dir = new File("C:\\Rekordautoak\\Logs");
 		if (!dir.exists()) {
@@ -123,6 +141,11 @@ public class LogsOrdendetrabajo {
 		
 	}
 //registrar fanializacion de orden
+	/**
+	 * 
+	 * 
+	 * @param id
+	 */
 	public static void imprimirfactura(String id) {
 		File dir = new File("C:\\Rekordautoak\\Logs");
 		if (!dir.exists()) {
