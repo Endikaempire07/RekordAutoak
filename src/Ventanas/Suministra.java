@@ -1545,9 +1545,7 @@ public class Suministra extends Login implements Runnable, ActionListener, ListS
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				vm.btnAgregar.setEnabled(false);
 				vm.btnBorrar.setEnabled(false);
-				vm.btnModifiacar.setEnabled(false);
 				vm.btnVaciar.setEnabled(false);
 				this.dispose();
 

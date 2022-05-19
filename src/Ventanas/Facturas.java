@@ -914,6 +914,7 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 
 		modificar = new ImageIcon("src/resources/ayuda.png");
 
+		btnCerrarSesion.addActionListener(this);
 		btnAgregar.addActionListener(this);
 		btnModifiacar.addActionListener(this);
 		btnBorrar.addActionListener(this);
@@ -1776,6 +1777,7 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 				vmClientes.lblapellidos.setText(apellido);
 				vmClientes.lblroles.setText(roles);
 				vmClientes.btnVaciar.setEnabled(false);
+
 				this.dispose();
 
 			} else if (boton == Empleados) {
@@ -2324,7 +2326,9 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 				} else {
 					filaseleccionada = table.convertRowIndexToModel(filaseleccionada);
 
-		
+					Empleado = lblNumemple.getText();
+
+					
 					Idfactura = (String) table.getValueAt(filaseleccionada, 0);
 					Idorden = (String) table.getValueAt(filaseleccionada, 1);
 					metodo = (String) table.getValueAt(filaseleccionada, 2);
@@ -2355,7 +2359,6 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 					vm.lblMarca.setText(Marca);
 					vm.lblModelo.setText(Modelo);
 					vm.lblFechaITV.setText(FechaITV);
-					
 					vm.lblMecanico.setText(Empleado);
 					
 					vm.tablarep.setModel(dtmTable);

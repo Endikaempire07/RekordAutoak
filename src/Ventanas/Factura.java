@@ -723,7 +723,6 @@ public class Factura extends JFrame implements ActionListener{
 			JOptionPane.showMessageDialog(this, (String) "factura generada con exito", "Guardado en carpeta facturas",
 					JOptionPane.INFORMATION_MESSAGE, null);
 			btnimprimir.setVisible(true);
-			LogsOrdendetrabajo.imprimirfactura(ida);
 			
 			pagada();
 			

@@ -715,7 +715,7 @@ public class ayudaF extends Login implements Runnable, ActionListener {
 					roles = lblroles.getText();
 					numemple = lblNumemple.getText();
 
-					Vehiculos vm = new Vehiculos();
+					Facturas vm = new Facturas();
 					vm.setVisible(true);
 					vm.lblnombre.setText(nombre);
 					vm.lblapellidos.setText(apellido);
@@ -737,7 +737,7 @@ public class ayudaF extends Login implements Runnable, ActionListener {
 					roles = lblroles.getText();
 					numemple = lblNumemple.getText();
 
-					Vehiculos vm = new Vehiculos();
+					Facturas vm = new Facturas();
 					vm.setVisible(true);
 					vm.lblnombre.setText(nombre);
 					vm.lblapellidos.setText(apellido);
@@ -761,7 +761,7 @@ public class ayudaF extends Login implements Runnable, ActionListener {
 					roles = lblroles.getText();
 					numemple = lblNumemple.getText();
 
-					Vehiculos vm = new Vehiculos();
+					Facturas vm = new Facturas();
 					vm.setVisible(true);
 					vm.lblNumemple.setText(numemple);
 					vm.lblnombre.setText(nombre);
@@ -781,7 +781,7 @@ public class ayudaF extends Login implements Runnable, ActionListener {
 					roles = lblroles.getText();
 					numemple = lblNumemple.getText();
 
-					Vehiculos vm = new Vehiculos();
+					Facturas vm = new Facturas();
 					vm.setVisible(true);
 					vm.lblnombre.setText(nombre);
 					vm.lblapellidos.setText(apellido);

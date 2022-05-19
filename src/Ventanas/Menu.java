@@ -360,7 +360,6 @@ public class Menu extends Login implements Runnable, ActionListener {
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 				Clientes vmClientes = new Clientes();
-				this.dispose();
 				vmClientes.setVisible(true);
 				vmClientes.lblNumemple.setText(numemple);
 				vmClientes.lblnombre.setText(nombre);
@@ -371,7 +370,8 @@ public class Menu extends Login implements Runnable, ActionListener {
 				vmClientes.btnBorrar.setEnabled(false);
 				vmClientes.btnModifiacar.setEnabled(false);
 				vmClientes.btnVaciar.setEnabled(false);
-				
+				this.dispose();
+
 				
 			}else if(boton == btnEmpleados) {
 				nombre = lblnombre.getText();
@@ -400,7 +400,6 @@ public class Menu extends Login implements Runnable, ActionListener {
 				numemple = lblNumemple.getText();
 				
 				Ordenes vm = new Ordenes();
-				this.dispose();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);					
@@ -408,7 +407,8 @@ public class Menu extends Login implements Runnable, ActionListener {
 				vm.lblNumemple.setText(numemple);
 
 				vm.btnVaciar.setEnabled(false);
-				
+				this.dispose();
+
 			}else if(boton == btnVehiculos) {
 				nombre = lblnombre.getText();
 				apellido =lblapellidos.getText();
@@ -416,7 +416,6 @@ public class Menu extends Login implements Runnable, ActionListener {
 				numemple = lblNumemple.getText();
 
 				Vehiculos vm = new Vehiculos();
-				this.dispose();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);					
@@ -424,6 +423,8 @@ public class Menu extends Login implements Runnable, ActionListener {
 				vm.lblNumemple.setText(numemple);
 
 				vm.btnVaciar.setEnabled(false);
+				this.dispose();
+
 			}
 			
 		}else if(numeroroles >= 30000 && numeroroles <= 49999 ) {
@@ -445,7 +446,6 @@ public class Menu extends Login implements Runnable, ActionListener {
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 				Clientes vmClientes = new Clientes();
-				this.dispose();
 				vmClientes.setVisible(true);
 				vmClientes.lblNumemple.setText(numemple);
 				vmClientes.lblnombre.setText(nombre);
@@ -455,7 +455,8 @@ public class Menu extends Login implements Runnable, ActionListener {
 				vmClientes.btnBorrar.setEnabled(true);
 				vmClientes.btnModifiacar.setEnabled(true);
 				vmClientes.btnVaciar.setEnabled(false);
-				
+				this.dispose();
+
 				
 			}else if(boton == btnEmpleados) {
 				nombre = lblnombre.getText();
@@ -464,14 +465,14 @@ public class Menu extends Login implements Runnable, ActionListener {
 				numemple = lblNumemple.getText();
 
 				EmpleadosRM vm = new EmpleadosRM();
-				this.dispose();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);					
 				vm.lblroles.setText(roles);		
 				vm.lblNumemple.setText(numemple);
 				
-				
+				this.dispose();
+
 			
 				vm.btnAgregar.setEnabled(false);
 				vm.btnBorrar.setEnabled(false);
@@ -486,7 +487,6 @@ public class Menu extends Login implements Runnable, ActionListener {
 				numemple = lblNumemple.getText();
 
 				Ordenes vm = new Ordenes();
-				this.dispose();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);					
@@ -496,7 +496,8 @@ public class Menu extends Login implements Runnable, ActionListener {
 				vm.btnBorrar.setEnabled(true);
 				vm.btnModifiacar.setEnabled(true);
 				vm.btnVaciar.setEnabled(false);
-				
+				this.dispose();
+
 				
 			}else if(boton == btnVehiculos) {
 				nombre = lblnombre.getText();
@@ -505,7 +506,6 @@ public class Menu extends Login implements Runnable, ActionListener {
 				numemple = lblNumemple.getText();
 
 				Vehiculos vm = new Vehiculos();
-				this.dispose();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);					
@@ -518,7 +518,8 @@ public class Menu extends Login implements Runnable, ActionListener {
 				vm.btnBorrar.setEnabled(false);
 				vm.btnModifiacar.setEnabled(false);
 				vm.btnVaciar.setEnabled(false);
-				
+				this.dispose();
+
 				
 			}
 				
@@ -541,13 +542,13 @@ public class Menu extends Login implements Runnable, ActionListener {
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 				Clientes vmClientes = new Clientes();
-				this.dispose();
 				vmClientes.setVisible(true);
 				vmClientes.lblNumemple.setText(numemple);
 				vmClientes.lblnombre.setText(nombre);
 				vmClientes.lblapellidos.setText(apellido);					
 				vmClientes.lblroles.setText(roles);		
-		
+				this.dispose();
+
 			
 				
 				
@@ -559,14 +560,14 @@ public class Menu extends Login implements Runnable, ActionListener {
 
 			
 				Empleados vm = new Empleados();
-				this.dispose();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);					
 				vm.lblroles.setText(roles);		
 				vm.lblNumemple.setText(numemple);
 		
-				
+				this.dispose();
+
 				
 			}else if(boton == btnOrdenes) {
 				nombre = lblnombre.getText();
@@ -575,14 +576,14 @@ public class Menu extends Login implements Runnable, ActionListener {
 				numemple = lblNumemple.getText();
 
 				Ordenes vm = new Ordenes();
-				this.dispose();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);					
 				vm.lblroles.setText(roles);	
 				vm.lblNumemple.setText(numemple);
 				
-				
+				this.dispose();
+
 				
 				
 				
@@ -593,13 +594,13 @@ public class Menu extends Login implements Runnable, ActionListener {
 				numemple = lblNumemple.getText();
 
 				Vehiculos vm = new Vehiculos();
-				this.dispose();
 				vm.setVisible(true);
 				vm.lblNumemple.setText(numemple);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);					
 				vm.lblroles.setText(roles);	
-			
+				this.dispose();
+
 			}
 		}else if(numeroroles == 90000) {
 			
@@ -620,7 +621,6 @@ public class Menu extends Login implements Runnable, ActionListener {
 				roles = lblroles.getText();
 				numemple = lblNumemple.getText();
 				Clientes vmClientes = new Clientes();
-				this.dispose();
 				vmClientes.setVisible(true);
 				vmClientes.lblNumemple.setText(numemple);
 				vmClientes.lblnombre.setText(nombre);
@@ -632,7 +632,8 @@ public class Menu extends Login implements Runnable, ActionListener {
 				vmClientes.btnModifiacar.setEnabled(false);
 				vmClientes.btnVaciar.setEnabled(false);
 
-			
+				this.dispose();
+
 			
 			
 			}else if(boton == btnEmpleados) {
@@ -642,7 +643,6 @@ public class Menu extends Login implements Runnable, ActionListener {
 				numemple = lblNumemple.getText();
 
 				EmpleadosJefe vm = new EmpleadosJefe();
-				this.dispose();
 				vm.setVisible(true);
 				
 			
@@ -656,7 +656,8 @@ public class Menu extends Login implements Runnable, ActionListener {
 				vm.btnBorrar.setEnabled(false);
 				vm.btnModifiacar.setEnabled(false);
 				vm.btnVaciar.setEnabled(false);
-				
+				this.dispose();
+
 				
 			}else if(boton == btnOrdenes) {
 				nombre = lblnombre.getText();
@@ -665,7 +666,6 @@ public class Menu extends Login implements Runnable, ActionListener {
 				numemple = lblNumemple.getText();
 
 				Ordenes vm = new Ordenes();
-				this.dispose();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);					
@@ -677,7 +677,8 @@ public class Menu extends Login implements Runnable, ActionListener {
 				vm.btnModifiacar.setEnabled(false);
 				vm.btnVaciar.setEnabled(false);
 				
-				
+				this.dispose();
+
 			}else if(boton == btnVehiculos) {
 				nombre = lblnombre.getText();
 				apellido =lblapellidos.getText();
@@ -685,7 +686,6 @@ public class Menu extends Login implements Runnable, ActionListener {
 				numemple = lblNumemple.getText();
 
 				Vehiculos vm = new Vehiculos();
-				this.dispose();
 				vm.setVisible(true);
 				vm.lblnombre.setText(nombre);
 				vm.lblapellidos.setText(apellido);					
@@ -697,7 +697,8 @@ public class Menu extends Login implements Runnable, ActionListener {
 				vm.btnModifiacar.setEnabled(false);
 				vm.btnVaciar.setEnabled(false);
 
-				
+				this.dispose();
+
 			}
 		}
 	}

@@ -752,7 +752,7 @@ public class ayudaS extends Login implements Runnable, ActionListener {
 					roles = lblroles.getText();
 					numemple = lblNumemple.getText();
 
-					Vehiculos vm = new Vehiculos();
+					Servicios vm = new Servicios();
 					vm.setVisible(true);
 					vm.lblnombre.setText(nombre);
 					vm.lblapellidos.setText(apellido);
@@ -776,7 +776,7 @@ public class ayudaS extends Login implements Runnable, ActionListener {
 					roles = lblroles.getText();
 					numemple = lblNumemple.getText();
 
-					Vehiculos vm = new Vehiculos();
+					Servicios vm = new Servicios();
 					vm.setVisible(true);
 					vm.lblNumemple.setText(numemple);
 					vm.lblnombre.setText(nombre);
@@ -796,7 +796,7 @@ public class ayudaS extends Login implements Runnable, ActionListener {
 					roles = lblroles.getText();
 					numemple = lblNumemple.getText();
 
-					Vehiculos vm = new Vehiculos();
+					Servicios vm = new Servicios();
 					vm.setVisible(true);
 					vm.lblnombre.setText(nombre);
 					vm.lblapellidos.setText(apellido);

@@ -856,7 +856,7 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 		gbc_lblNewLabel_15.gridy = 0;
 		panel_4.add(lblNewLabel_15, gbc_lblNewLabel_15);
 
-		btnServicio = new JButton("Servicos");
+		btnServicio = new JButton("Servicios");
 		GridBagConstraints gbc_btnServicio = new GridBagConstraints();
 		gbc_btnServicio.gridwidth = 8;
 		gbc_btnServicio.insets = new Insets(0, 0, 0, 5);
@@ -918,8 +918,8 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 		btnReparacion.addActionListener(this);
 		btnPieza.addActionListener(this);
 		btnFactura.addActionListener(this);
-
-
+		btnCerrarSesion.addActionListener(this);
+ 
 		
 
 	}
@@ -1517,9 +1517,7 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
 				
-				vm.btnAgregar.setEnabled(false);
 				vm.btnBorrar.setEnabled(false);
-				vm.btnModifiacar.setEnabled(false);
 				vm.btnVaciar.setEnabled(false);
 
 				vm.txtPrecioC.setEnabled(false);
@@ -1598,11 +1596,8 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
 				
-				vm.btnAgregar.setEnabled(false);
-				vm.btnBorrar.setEnabled(false);
-				vm.btnModifiacar.setEnabled(false);
 				vm.btnVaciar.setEnabled(false);
-				vm.btnImprimir.setEnabled(false);
+				vm.btnBorrar.setEnabled(false);
 
 
 
@@ -1637,6 +1632,7 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 				vmClientes.lblnombre.setText(nombre);
 				vmClientes.lblapellidos.setText(apellido);
 				vmClientes.lblroles.setText(roles);
+				vmClientes.btnVaciar.setEnabled(false);
 				vmClientes.btnVaciar.setEnabled(false);
 				this.dispose();
 
@@ -1772,9 +1768,10 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 				vm.lblNumemple.setText(numemple);
 				
 			
+				vm.btnAgregar.setEnabled(false);
 				vm.btnBorrar.setEnabled(false);
+				vm.btnModifiacar.setEnabled(false);
 				vm.btnVaciar.setEnabled(false);
-
 			
 				vm.txDescripcion.setEnabled(false);
 				vm.txtReparacion.setEnabled(false);
@@ -1797,12 +1794,12 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				
+			
+
+				vm.btnAgregar.setEnabled(false);
 				vm.btnBorrar.setEnabled(false);
+				vm.btnModifiacar.setEnabled(false);
 				vm.btnVaciar.setEnabled(false);
-				
-
-
 
 				
 				this.dispose();
@@ -1820,11 +1817,8 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
 				
-				vm.btnAgregar.setEnabled(false);
-				vm.btnModifiacar.setEnabled(false);
-				vm.btnImprimir.setEnabled(false);
-
-
+				vm.btnVaciar.setEnabled(false);
+				vm.btnBorrar.setEnabled(false);
 
 
 				
@@ -2245,7 +2239,6 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 				vm.btnBorrar.setEnabled(false);
 				vm.btnModifiacar.setEnabled(false);
 				vm.btnVaciar.setEnabled(false);
-				vm.btnImprimir.setEnabled(false);
 
 
 
@@ -2584,14 +2577,6 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 
 		}
 
-	}
-
-	public String getOrden() {
-		return orden;
-	}
-
-	public void setOrden(String orden) {
-		this.orden = orden;
 	}
 	
 }
