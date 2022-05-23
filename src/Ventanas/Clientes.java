@@ -1089,7 +1089,11 @@ public class Clientes extends Login implements Runnable, ActionListener, ListSel
 			st.close();
 			// cierro la conexion
 			conexion.close();
-
+			
+			
+			JOptionPane.showMessageDialog(this,
+					(String) "Se a borrado el cliente seleccionado " + dni + " ",
+					"Borrado", JOptionPane.INFORMATION_MESSAGE, null);
 			// si borro correctamente en la base de datos
 			// lo borro tambien en la tabla
 			dtmTabla.removeRow(filaseleccionada);
@@ -1988,7 +1992,9 @@ public class Clientes extends Login implements Runnable, ActionListener, ListSel
 			if (dtmTabla.getRowCount() != 0) {
 				vaciarCliente();
 				if (modificado) {
-
+					JOptionPane.showMessageDialog(this,
+							(String) "Se a vaciado la tabla",
+							"Vaciada", JOptionPane.INFORMATION_MESSAGE, null);
 					txtDni.setText("");
 					txtNombre.setText("");
 					txtApellidos.setText("");

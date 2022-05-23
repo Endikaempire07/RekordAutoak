@@ -1192,7 +1192,9 @@ public class Suministra extends Login implements Runnable, ActionListener, ListS
 			st.close();
 			// cierro la conexion
 			conexion.close();
-
+			JOptionPane.showMessageDialog(this,
+					(String) "Se a borrado el suministro seleccionado " +pedido+ " ",
+					"Borrado", JOptionPane.INFORMATION_MESSAGE, null);
 			// si borro correctamente en la base de datos
 			// lo borro tambien en la tabla
 			dtmTabla.removeRow(filaseleccionada);
@@ -1997,7 +1999,9 @@ public class Suministra extends Login implements Runnable, ActionListener, ListS
 			if (dtmTabla.getRowCount() != 0) {
 				vaciarSuministro();
 				if (modificado) {
-
+					JOptionPane.showMessageDialog(this,
+							(String) "Se a vaciado la tabla",
+							"Vaciada", JOptionPane.INFORMATION_MESSAGE, null);
 					txtFechaLLegada.setText("");
 					txtFechaInicio.setText("");
 					txtPrecioH.setText("");

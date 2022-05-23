@@ -1210,7 +1210,9 @@ public class Reparaciones extends Login implements Runnable, ActionListener, Lis
 			st.close();
 			// cierro la conexion
 			conexion.close();
-
+			JOptionPane.showMessageDialog(this,
+					(String) "Se a borrado la reparacion seleccionada " +REPA+ " ",
+					"Borrado", JOptionPane.INFORMATION_MESSAGE, null);
 			// si borro correctamente en la base de datos
 			// lo borro tambien en la tabla
 			dtmTabla.removeRow(filaseleccionada);
@@ -1946,7 +1948,9 @@ public class Reparaciones extends Login implements Runnable, ActionListener, Lis
 			if (dtmTabla.getRowCount() != 0) {
 				vaciarReparacion();
 				if (modificado) {
-
+					JOptionPane.showMessageDialog(this,
+							(String) "Se a vaciado la tabla",
+							"Vaciada", JOptionPane.INFORMATION_MESSAGE, null);
 					txtReparacion.setText("");
 					txtPrecioH.setText("");
 					txtCantidad.setText("");

@@ -995,7 +995,9 @@ public class Servicios extends Login implements Runnable, ActionListener, ListSe
 			st.close();
 			// cierro la conexion
 			conexion.close();
-
+			JOptionPane.showMessageDialog(this,
+					(String) "Se a borrado la servicio seleccionado " +servicio+ " ",
+					"Borrado", JOptionPane.INFORMATION_MESSAGE, null);
 			// si borro correctamente en la base de datos
 			// lo borro tambien en la tabla
 			dtmTabla.removeRow(filaseleccionada);
@@ -1669,7 +1671,9 @@ public class Servicios extends Login implements Runnable, ActionListener, ListSe
 			if (dtmTabla.getRowCount() != 0) {
 				vaciarCliente();
 				if (modificado) {
-
+					JOptionPane.showMessageDialog(this,
+							(String) "Se a vaciado la tabla",
+							"Vaciada", JOptionPane.INFORMATION_MESSAGE, null);
 					txtReparacion.setText("");
 
 					txDescripcion.setText("");

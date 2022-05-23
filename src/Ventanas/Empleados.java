@@ -1329,7 +1329,9 @@ public class Empleados extends Login implements Runnable, ActionListener, ListSe
 			st.close();
 			// cierro la conexion
 			conexion.close();
-
+			JOptionPane.showMessageDialog(this,
+					(String) "Se a borrado el empleado seleccionada " +idemple+ " ",
+					"Borrado", JOptionPane.INFORMATION_MESSAGE, null);
 			// si borro correctamente en la base de datos
 			// lo borro tambien en la tabla
 			dtmTabla.removeRow(filaseleccionada);
@@ -1371,7 +1373,7 @@ public class Empleados extends Login implements Runnable, ActionListener, ListSe
 					"', salBase = " + SalM + ", comision = " + comiM + " , nombre='" + nombrem + "' , apellidos='" + apellidom
 					+ "' , fecNac='" + FechNacm + "' , direccion='" + direccionm + "', tipoEmpleado='" + TEmpleadom
 					+ "', fecAltaContrato='" + fechaAltam + "', estado='" + estadom + "', idRole='" + rolm
-					+ "' WHERE dniEmple =  '" + Dni + "';";
+					+ "' WHERE dniEmple =  '" + Dni + "' and dniJefe = '"+DniJ+"';";
 			
 			modificado = true;
 			st.executeUpdate(consulta);
@@ -2323,9 +2325,12 @@ public class Empleados extends Login implements Runnable, ActionListener, ListSe
 																													if (fechaAltam
 																															.matches(
 																																	"^\\d{4}-\\d{2}-\\d{2}$")) {
+																														
+																														
+																														
 																														TEmpleadom = (String) cmbEmpleado
 																																.getSelectedItem();
-
+																														
 																														if (TEmpleadom == "Mecanico") {
 
 																															txtrol.setText(
@@ -2606,8 +2611,16 @@ public class Empleados extends Login implements Runnable, ActionListener, ListSe
 		} else if (boton == btnVaciar) {
 
 			if (dtmTabla.getRowCount() != 0) {
-				vaciarEmpleado();
+			
+				
 				if (modificado) {
+					vaciarEmpleado();
+					JOptionPane.showMessageDialog(this,
+							(String) "Se a vaciado la tabla",
+							"Vaciada", JOptionPane.INFORMATION_MESSAGE, null);
+
+				
+					
 					txtDni.setText("");
 					txtNombre.setText("");
 					txtApellidos.setText("");

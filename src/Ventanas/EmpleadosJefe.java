@@ -1287,7 +1287,9 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 			st.close();
 			// cierro la conexion
 			conexion.close();
-
+			JOptionPane.showMessageDialog(this,
+					(String) "Se a borrado el empleado seleccionada " +idemple+ " ",
+					"Borrado", JOptionPane.INFORMATION_MESSAGE, null);
 			// si borro correctamente en la base de datos
 			// lo borro tambien en la tabla
 			dtmTabla.removeRow(filaseleccionada);
@@ -2526,6 +2528,9 @@ public class EmpleadosJefe extends Login implements Runnable, ActionListener, Li
 			if (dtmTabla.getRowCount() != 0) {
 				vaciarEmpleado();
 				if (modificado) {
+					JOptionPane.showMessageDialog(this,
+							(String) "Se a vaciado la tabla",
+							"Vaciada", JOptionPane.INFORMATION_MESSAGE, null);
 					txtDni.setText("");
 					txtNombre.setText("");
 					txtApellidos.setText("");

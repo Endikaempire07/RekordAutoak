@@ -1545,7 +1545,9 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 			st.close();
 			// cierro la conexion
 			conexion.close();
-
+			JOptionPane.showMessageDialog(this,
+					(String) "Se a borrado la factura seleccionada " +factura+ " ",
+					"Borrado", JOptionPane.INFORMATION_MESSAGE, null);
 			// si borro correctamente en la base de datos
 			// lo borro tambien en la tabla
 			dtmTabla.removeRow(filaseleccionada);
@@ -2295,7 +2297,9 @@ public class Facturas extends Login implements Runnable, ActionListener, ListSel
 			if (dtmTabla.getRowCount() != 0) {
 				vaciarFacturas();
 				if (modificado) {
-
+					JOptionPane.showMessageDialog(this,
+							(String) "Se a vaciado la tabla",
+							"Vaciada", JOptionPane.INFORMATION_MESSAGE, null);
 					txtFactura.setText("");
 					txtFecha.setText("");
 					txtDescuento.setText("");

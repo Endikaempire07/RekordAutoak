@@ -1106,6 +1106,9 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 			// cierro la conexion
 			conexion.close();
 
+			JOptionPane.showMessageDialog(this,
+					(String) "Se a borrado la pieza seleccionada " +Pieza+ " ",
+					"Borrado", JOptionPane.INFORMATION_MESSAGE, null);
 			// si borro correctamente en la base de datos
 			// lo borro tambien en la tabla
 			dtmTabla.removeRow(filaseleccionada);
@@ -1328,11 +1331,12 @@ public class Pieza extends Login implements Runnable, ActionListener, ListSelect
 				vm.lblapellidos.setText(apellido);
 				vm.lblroles.setText(roles);
 				vm.lblNumemple.setText(numemple);
-				vm.btnAgregar.setEnabled(false);
+				
+				
 				vm.btnBorrar.setEnabled(false);
-				vm.btnModifiacar.setEnabled(false);
 				vm.btnVaciar.setEnabled(false);
-			
+				this.dispose();
+
 			}
 
 		}
@@ -1871,6 +1875,7 @@ txtMarca.requestFocus();
 			} else {
 				// convertimos la fila seleccionada al valor real del dtm
 				filaseleccionada = table.convertRowIndexToModel(filaseleccionada);
+				
 				eliminarCliente();
 				txtPieza.setText("");
 				txtNombre.setText("");
@@ -2029,7 +2034,9 @@ txtMarca.requestFocus();
 			if (dtmTabla.getRowCount() != 0) {
 				vaciarCliente();
 				if (modificado) {
-
+					JOptionPane.showMessageDialog(this,
+							(String) "Se a vaciado la tabla",
+							"Vaciada", JOptionPane.INFORMATION_MESSAGE, null);
 					txtPieza.setText("");
 					txtNombre.setText("");
 					txtPvp.setText("");

@@ -1300,7 +1300,10 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 			st.close();
 			// cierro la conexion
 			conexion.close();
-
+			
+			JOptionPane.showMessageDialog(this,
+					(String) "Se a borrado la orden seleccionada " + orden + " ",
+					"Borrado", JOptionPane.INFORMATION_MESSAGE, null);
 			// si borro correctamente en la base de datos
 			// lo borro tambien en la tabla
 			dtmTabla.removeRow(filaseleccionada);
@@ -1520,14 +1523,7 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 				vm.btnBorrar.setEnabled(false);
 				vm.btnVaciar.setEnabled(false);
 
-				vm.txtPrecioC.setEnabled(false);
-				vm.txtMarca.setEnabled(false);
-				vm.txtNombre.setEnabled(false);
-				vm.txtPieza.setEnabled(false);
-				vm.txtPvp.setEnabled(false);
-				vm.txtStock.setEnabled(false);
-				vm.cmbEstado.setEnabled(false);
-
+			
 
 
 				
@@ -2534,7 +2530,9 @@ public class Ordenes extends Login implements Runnable, ActionListener, ListSele
 			if (dtmTabla.getRowCount() != 0) {
 				vaciarOrdenes();
 				if (modificado) {
-					
+					JOptionPane.showMessageDialog(this,
+							(String) "Se a vaciado la tabla",
+							"Vaciada", JOptionPane.INFORMATION_MESSAGE, null);
 					txtFechaInicio.setText("");
 					txtDescTrabajo.setText("");
 					txtFechaFin.setText("");
